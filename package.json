@@ -1,0 +1,30 @@
+{
+    "name": "supportdeskapp",
+    "version": "1.0.0",
+    "description": "SupportDesk Ticket App",
+    "main": "server.js",
+    "scripts": {
+        "start": "node backend/server.js",
+        "server": "nodemon backend/server.js"
+    },
+    "keywords": [
+        "Support",
+        "Desk",
+        "Ticket",
+        "MERN",
+        "Stack",
+        "App"
+    ],
+    "author": "Almaas Taj",
+    "license": "MIT",
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "colors": "^1.4.0",
+        "dotenv": "^16.4.1",
+        "express": "^4.18.2",
+        "mongoose": "^8.1.1"
+    },
+    "devDependencies": {
+        "nodemon": "^3.0.3"
+    }
+}
