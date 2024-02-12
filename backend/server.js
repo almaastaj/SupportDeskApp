@@ -3,10 +3,15 @@ import colors from "colors";
 import userRoutes from "./routes/userRoutes.js";
 import dotenv from "dotenv";
 import errorHandler from "./middleware/errorMiddleware.js";
-// * dotenv setup => to read data from .env file (After calling dotenv.config(), your .env file should be parsed, and its key-value pairs will be available in process.env)
+import connectDB from "./config/db.js";
+// dotenv setup => to read data from .env file (After calling dotenv.config(), your .env file should be parsed, and its key-value pairs will be available in process.env)
 dotenv.config();
 const PORT = process.env.PORT || 5000;
 
+// Connect to database
+connectDB();
+
+// Call express server
 const app = express();
 
 // * MiddleWare: - To decode to request body (json and urlencoded)
