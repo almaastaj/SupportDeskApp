@@ -7,9 +7,13 @@ const Header = () => {
     return (
         <header className="header">
             <div className="logo">
-                <img src={logo} alt="Support Desk Logo" style={{ height: "32px", alignContent: "center" }} />
+                <img
+                    src={logo}
+                    alt="Support Desk Logo"
+                    style={{ height: "24px", alignContent: "center" }}
+                />
                 <span> </span>
-                <Link style={{ fontSize: "28px", fontWeight: "bold" }} to="/">
+                <Link style={{ fontSize: "24px", fontWeight: "bold" }} to="/">
                     Support Desk
                 </Link>
             </div>
