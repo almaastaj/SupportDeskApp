@@ -19,7 +19,7 @@ const protect = asyncHandler(async (req, res, next) => {
             // NOTE: We need to check if a user was found
             if (!req.user) {
                 res.status(401);
-                throw new Error("Not authirised");
+                throw new Error("Not authorized");
             }
             // move to next middleware
             next();

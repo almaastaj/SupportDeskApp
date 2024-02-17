@@ -1,6 +1,7 @@
 import express from "express";
 import colors from "colors";
 import userRoutes from "./routes/userRoutes.js";
+import ticketRoutes from "./routes/ticketRoutes.js";
 import dotenv from "dotenv";
 import errorHandler from "./middleware/errorMiddleware.js";
 import connectDB from "./config/db.js";
@@ -20,6 +21,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // * Routes
 app.use("/api/users", userRoutes);
+app.use("/api/tickets", ticketRoutes);
 
 // * Server Frontend
 // To create a route with express
