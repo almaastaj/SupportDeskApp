@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { FaUser } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { register, reset } from "../features/auth/authSlice";
+import { register } from "../features/auth/authSlice";
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -19,22 +19,9 @@ const Register = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const { user, isLoading, isError, isSuccess, message } = useSelector(
-        (state) => state.auth,
-    );
+    const { isLoading } = useSelector((state) => state.auth);
 
-    useEffect(() => {
-        if (isError) {
-            toast.error(message);
-        }
-
-        // Redirect when logged in
-        if (isSuccess || user) {
-            navigate("/");
-        }
-
-        dispatch(reset());
-    }, [isError, isSuccess, user, message, navigate, dispatch]);
+    // * NOTE: no need for useEffect here as we can catch the AsyncThunkAction rejection in our onSubmit or redirect them on the resolution. Side effects shoulld go in event handlers where possible (https://beta.reactjs.org/learn/keeping-components-pure#where-you-can-cause-side-effects)
 
     // onChange Function
     const onChange = (e) => {
@@ -57,8 +44,14 @@ const Register = () => {
                 email,
                 password,
             };
-
-            dispatch(register(userData));
+            // NOTE: by unwrapping the AsyncThunkAction we can navigate the user after getting a good response from our API or catch the AsyncThunkAction rejection to show an error message
+            dispatch(register(userData))
+                .unwrap()
+                .then((user) => {
+                    toast.success(`Registered new user - ${user.name}`);
+                    navigate("/");
+                })
+                .catch(toast.error);
         }
     };
 
