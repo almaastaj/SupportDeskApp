@@ -5,7 +5,10 @@ import asyncHandler from "express-async-handler";
 const protect = asyncHandler(async (req, res, next) => {
     let token;
 
-    if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
+    if (
+        req.headers.authorization &&
+        req.headers.authorization.startsWith("Bearer")
+    ) {
         try {
             // Get token from Header
             token = req.headers.authorization.split(" ")[1];
@@ -13,6 +16,11 @@ const protect = asyncHandler(async (req, res, next) => {
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
             // Get User from token ( select method to exclude the password field from returned user object)
             req.user = await User.findById(decoded.id).select("-password");
+            // NOTE: We need to check if a user was found
+            if (!req.user) {
+                res.status(401);
+                throw new Error("Not authirised");
+            }
             // move to next middleware
             next();
         } catch (error) {

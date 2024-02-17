@@ -5,6 +5,7 @@ import { FaSignInAlt } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login } from "../features/auth/authSlice";
+import Spinner from "../components/Spinner";
 
 const Login = () => {
     const [formData, setFormData] = useState({
@@ -42,6 +43,10 @@ const Login = () => {
             })
             .catch(toast.error);
     };
+
+    if (isLoading) {
+        return <Spinner />;
+    }
 
     return (
         <>
