@@ -3,6 +3,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { FaSignInAlt } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { login } from "../features/auth/authSlice";
 
 const Login = () => {
@@ -14,10 +15,9 @@ const Login = () => {
     const { email, password } = formData;
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    const { user, isLoading, isSuccess, message } = useSelector(
-        (state) => state.auth,
-    );
+    const { isLoading } = useSelector((state) => state.auth);
 
     const onChange = (e) => {
         setFormData((prevState) => ({
@@ -26,6 +26,7 @@ const Login = () => {
         }));
     };
 
+    // NOTE: no need for useEffect here as we can catch the AsyncThunkAction rejection in our onSubmit or redirect them on the resolution Side effects shoulld go in event handlers where possible
     const onSubmit = (e) => {
         e.preventDefault();
         const userData = {
@@ -33,7 +34,13 @@ const Login = () => {
             password,
         };
 
-        dispatch(login(userData));
+        dispatch(login(userData))
+            .unwrap()
+            .then((user) => {
+                toast.success(`Logged in as ${user.name}`);
+                navigate("/");
+            })
+            .catch(toast.error);
     };
 
     return (

@@ -48,6 +48,7 @@ const Register = () => {
             dispatch(register(userData))
                 .unwrap()
                 .then((user) => {
+                    console.log(user.toString());
                     toast.success(`Registered new user - ${user.name}`);
                     navigate("/");
                 })
