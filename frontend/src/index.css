@@ -39,7 +39,9 @@ h3 {
     width: 100%;
     max-width: 960px;
     margin: 0 auto;
+    margin-bottom: 30px;
     padding: 0 20px;
+    padding-bottom: 20px;
     text-align: center;
 }
 
