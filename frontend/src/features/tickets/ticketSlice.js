@@ -67,8 +67,7 @@ export const ticketSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(getTickets.pending, (state) => {
-                // NOTE: clear single ticket on tickets page, this replaces need for
-                // loading state on individual ticket
+                // NOTE: clear single ticket on tickets page, this replaces need for state on individual ticket
                 state.ticket = null;
             })
             .addCase(getTickets.fulfilled, (state, action) => {
