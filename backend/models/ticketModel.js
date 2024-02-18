@@ -14,7 +14,8 @@ const ticketSchema = mongoose.Schema(
                 "Samsung Smartphone",
                 "Thinkpad Laptop",
                 "Titan Watch",
-                "Television",
+                "Sony Television",
+                "others",
             ],
         },
         description: {
