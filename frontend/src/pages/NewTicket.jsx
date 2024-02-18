@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import BackButton from "../components/BackButton";
+import { createTicket } from "../features/tickets/ticketSlice";
 
 const NewTicket = () => {
     const { user } = useSelector((state) => state.auth);
@@ -13,8 +14,19 @@ const NewTicket = () => {
     const [product, setProduct] = useState("");
     const [description, setDescription] = useState("");
 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const onSubmit = (e) => {
         e.preventDefault();
+        dispatch(createTicket({ product, description }))
+            .unwrap()
+            .then(() => {
+                // We got a good response so navigate the user
+                navigate("/tickets");
+                toast.success("New ticket created!");
+            })
+            .catch(toast.error);
     };
 
     return (
