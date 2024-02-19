@@ -23,7 +23,7 @@ const customStyles = {
 };
 
 const Ticket = () => {
-    const { ticket } = useSelector((state) => state.ticket);
+    const { ticket } = useSelector((state) => state.tickets);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
