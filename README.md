@@ -8,11 +8,12 @@ This is a Repo in which a **Support Desk Ticket App** is created using **MERN** 
 
 ![HomePage Screen](/images/HomePage.png)
 
--   This is the **HomePage** Screen has **4** major functionality.
+-   This is the **HomePage** Screen has **5** major **functionality**.
 -   **Login:** This function is used to login the SupportDesk App.
 -   **Register:** This function is used to Register new User.
 -   **Create New Ticket:** This button is used to **create new ticket.**
 -   **View My Tickets:** This button is used to view all the tickets created and their current status and various details.
+-   **Notes Functionality:** This App allows us to Add Notes to the Tickets.
 
 ## Register Page
 
@@ -33,3 +34,7 @@ This is a Repo in which a **Support Desk Ticket App** is created using **MERN** 
 ## View Single Ticket Page
 
 ![View Single Ticket Page](/images/ViewTicketPage.png)
+
+## Notes
+
+![Notes View](/images/NotesFunctionality.png)
