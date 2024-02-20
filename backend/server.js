@@ -5,6 +5,7 @@ import ticketRoutes from "./routes/ticketRoutes.js";
 import dotenv from "dotenv";
 import errorHandler from "./middleware/errorMiddleware.js";
 import connectDB from "./config/db.js";
+import path from "path";
 // dotenv setup => to read data from .env file (After calling dotenv.config(), your .env file should be parsed, and its key-value pairs will be available in process.env)
 dotenv.config();
 const PORT = process.env.PORT || 5000;
