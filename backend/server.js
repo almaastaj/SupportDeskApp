@@ -1,5 +1,5 @@
 import express from "express";
-import colors from "colors";
+import "colors";
 import userRoutes from "./routes/userRoutes.js";
 import ticketRoutes from "./routes/ticketRoutes.js";
 import dotenv from "dotenv";
@@ -25,9 +25,19 @@ app.use("/api/tickets", ticketRoutes);
 
 // * Server Frontend
 // To create a route with express
-app.get("/", (req, res) => {
-    res.status(200).json({ message: "Welcome to the Support Desk API" });
-});
+if (process.env.NODE_ENV === "production") {
+    // Set build folder as static
+    app.use(express.static(path.join(__dirname, "../frontend/build")));
+
+    // FIX: below code fixes app crashing on refresh in deployment :- any route  that is not api will be redirected to index.html
+    app.get("*", (_, res) => {
+        res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
+    });
+} else {
+    app.get("/", (_, res) => {
+        res.status(200).json({ message: "Welcome to the Support Desk API" });
+    });
+}
 
 // error Handler
 app.use(errorHandler);
