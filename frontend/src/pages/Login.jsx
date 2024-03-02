@@ -9,8 +9,8 @@ import Spinner from "../components/Spinner";
 
 const Login = () => {
     const [formData, setFormData] = useState({
-        email: "",
-        password: "",
+        email: "test@email.com",
+        password: "123456",
     });
 
     const { email, password } = formData;
